@@ -24,3 +24,4 @@ yarn-error.log*
 
 inspectionProfiles/Project_Default.xml
 vcs.xml
+.idea/workspace.xml
