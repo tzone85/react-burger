@@ -10,12 +10,21 @@ class App extends Component {
             {name: "Mncedi", age: 28},
             {name: "Thando", age: 32},
             {name: "Noluthando", age: 30}
-        ]
+        ],
+        otherState: 'some other value'
     };
 
     // event Handlers tippically have suffix of Handler
     switchNameHandler = () => {
-        console.log('was clinked');
+        // console.log('was clinked');
+        // this.state.persons[0].name = "Mncedisi" //done mutate a ... directly react will not allow us to do this
+
+        this.setState({
+            persons: [
+                {name: "Mncedisi Bhovu", age: 28},
+                {name: "Thando", age: 32},
+                {name: "Noluthando Mapholoba    ", age: 30}
+            ] })
     };
 
   render() {
