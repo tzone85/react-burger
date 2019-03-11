@@ -70,7 +70,6 @@ class App extends Component {
                         age={this.state.persons[2].age}/>
             </div>
             );
-
         }
 
         return (
@@ -82,8 +81,6 @@ class App extends Component {
                     onClick={() => this.togglePersonHandler()}>Switch Name
                 </button>
                 {person}
-
-
             </div>
         );
 
