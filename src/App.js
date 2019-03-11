@@ -11,7 +11,8 @@ class App extends Component {
             {name: "Thando", age: 32},
             {name: "Noluthando", age: 30}
         ],
-        otherState: 'some other value'
+        otherState: 'some other value',
+        showPerson: false
     };
 
     // event Handlers tippically have suffix of Handler
@@ -38,6 +39,12 @@ class App extends Component {
         })
     };
 
+    togglePersonHandler = () => {
+
+        const doesShow = this.state.showPerson;
+        this.setState({showPerson: !doesShow});
+    };
+
     render() {
 
         const style = {
@@ -54,16 +61,22 @@ class App extends Component {
                 <p>This is actually working</p>
                 <button
                     style={style}
-                    onClick={() => this.switchNameHandler("Mncedi!!")}>Switch Name</button>
+                    onClick={() => this.togglePersonHandler()}>Switch Name</button>
+                {
+                    // display the persons components when showPerson is true
+                    this.state.showPerson === true ?
+                    <div>
+                        <Person name={this.state.persons[0].name}
+                                age={this.state.persons[0].age}/>
+                        <Person name={this.state.persons[1].name}
+                                age={this.state.persons[1].age}
+                                click={this.switchNameHandler.bind(this, "Mncedisi Bhovu")}
+                                changed = {this.nameChangedHandler}>My Hobbies: Racing</Person>
+                        <Person name={this.state.persons[2].name}
+                                age={this.state.persons[2].age}/>
+                    </div> : null
+                }
 
-                <Person name={this.state.persons[0].name}
-                        age={this.state.persons[0].age}/>
-                <Person name={this.state.persons[1].name}
-                        age={this.state.persons[1].age}
-                        click={this.switchNameHandler.bind(this, "Mncedisi Bhovu")}
-                        changed = {this.nameChangedHandler}>My Hobbies: Racing</Person>
-                <Person name={this.state.persons[2].name}
-                        age={this.state.persons[2].age}/>
             </div>
         );
 
