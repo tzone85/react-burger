@@ -15,18 +15,11 @@ class App extends Component {
         showPerson: false
     };
 
-    // event Handlers tippically have suffix of Handler
-    switchNameHandler = (newName) => {
-        // console.log('was clinked');
-        // this.state.persons[0].name = "Mncedisi" //done mutate a ... directly react will not allow us to do this
-
-        this.setState({
-            persons: [
-                {name: newName, age: 28},
-                {name: "Thando", age: 32},
-                {name: "Noluthando", age: 30}
-            ]
-        })
+    // event Handlers tipically have suffix of Handler
+    deletePersonHandler = (personIndex) => {
+        const persons = this.state.persons;
+        persons.splice(personIndex, 1); // splice removes one element from the array
+        this.setState({persons: persons});
     };
 
     nameChangedHandler = (event) => {
@@ -60,17 +53,18 @@ class App extends Component {
         if (this.state.showPerson) {
             person = (
             <div>
-                <Person name={this.state.persons[0].name}
-                        age={this.state.persons[0].age}/>
-                <Person name={this.state.persons[1].name}
-                        age={this.state.persons[1].age}
-                        click={this.switchNameHandler.bind(this, "Mncedisi Bhovu")}
-                        changed={this.nameChangedHandler}>My Hobbies: Racing</Person>
-                <Person name={this.state.persons[2].name}
-                        age={this.state.persons[2].age}/>
+                {/*using the map function to be executed on every  element of the array*/}
+                {this.state.persons.map((person, index) => {
+                    return <Person
+                                click={() => this.deletePersonHandler(index)}
+                                name = { person.name }
+                                age={ person.age } />
+                })}
             </div>
             );
         }
+
+
 
         return (
             <div className="App">
