@@ -55,27 +55,34 @@ class App extends Component {
             cursor: 'pointer'
         };
 
+        let person = null;
+
+        if (this.state.showPerson) {
+            person = (
+            <div>
+                <Person name={this.state.persons[0].name}
+                        age={this.state.persons[0].age}/>
+                <Person name={this.state.persons[1].name}
+                        age={this.state.persons[1].age}
+                        click={this.switchNameHandler.bind(this, "Mncedisi Bhovu")}
+                        changed={this.nameChangedHandler}>My Hobbies: Racing</Person>
+                <Person name={this.state.persons[2].name}
+                        age={this.state.persons[2].age}/>
+            </div>
+            );
+
+        }
+
         return (
             <div className="App">
                 <h1>Hi, I'm a React app</h1>
                 <p>This is actually working</p>
                 <button
                     style={style}
-                    onClick={() => this.togglePersonHandler()}>Switch Name</button>
-                {
-                    // display the persons components when showPerson is true
-                    this.state.showPerson === true ?
-                    <div>
-                        <Person name={this.state.persons[0].name}
-                                age={this.state.persons[0].age}/>
-                        <Person name={this.state.persons[1].name}
-                                age={this.state.persons[1].age}
-                                click={this.switchNameHandler.bind(this, "Mncedisi Bhovu")}
-                                changed = {this.nameChangedHandler}>My Hobbies: Racing</Person>
-                        <Person name={this.state.persons[2].name}
-                                age={this.state.persons[2].age}/>
-                    </div> : null
-                }
+                    onClick={() => this.togglePersonHandler()}>Switch Name
+                </button>
+                {person}
+
 
             </div>
         );
